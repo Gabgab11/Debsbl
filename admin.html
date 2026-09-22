@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Gallery Admin — Debs Beauty Lounge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7F2; --paper:#FFFDFB; --sand:#EEE1D2; --ink:#2A1D22; --ink-soft:#5C4A52;
+    --rose:#C98499; --rose-deep:#93435A; --gold:#B4924F; --gold-line:rgba(180,146,79,.4);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;min-height:100vh;background:var(--ink);color:var(--ink);
+    font-family:'Jost',sans-serif;
+    display:flex;align-items:flex-start;justify-content:center;padding:3em 1.2em;
+  }
+  h1,h2,.wordmark{font-family:'Fraunces',serif;color:var(--ink);margin:0;font-weight:500;}
+  :focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;}
+  .card{
+    background:var(--cream);border:1px solid var(--gold-line);padding:2.4em;max-width:640px;width:100%;
+  }
+  .wordmark{font-size:1.2rem;margin-bottom:.2em;}
+  .wordmark em{font-style:italic;color:var(--rose-deep);}
+  h2{font-size:1.5rem;margin-bottom:.2em;}
+  .subtext{color:var(--ink-soft);margin:0 0 1.6em;}
+  label{display:block;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:.4em;}
+  input[type="email"], input[type="password"], input[type="file"]{
+    width:100%;font-family:'Jost',sans-serif;font-size:.95rem;color:var(--ink);
+    padding:.8em .9em;border-radius:2px;border:1px solid var(--gold-line);background:var(--paper);
+    margin-bottom:1.1em;
+  }
+  input:focus{border-color:var(--rose-deep);}
+  .btn{
+    display:inline-block;padding:.85em 1.6em;border-radius:2px;font-weight:600;
+    border:1px solid var(--ink);cursor:pointer;font-family:'Jost',sans-serif;font-size:.95rem;
+    background:var(--ink);color:var(--cream);transition:background .15s ease;
+  }
+  .btn:hover{background:var(--rose-deep);border-color:var(--rose-deep);}
+  .btn-wide{width:100%;text-align:center;}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);}
+  .status{margin:.8em 0 0;font-weight:600;min-height:1.3em;font-size:.9rem;}
+  .status.success{color:#1c7a4d;}
+  .status.error{color:var(--rose-deep);}
+  .hidden{display:none!important;}
+
+  .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.6em;}
+  .upload-zone{
+    border:1px dashed var(--gold);padding:1.6em;text-align:center;margin-bottom:1.8em;
+    background:var(--sand);
+  }
+  .photo-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.8em;margin-top:1.4em;
+  }
+  .photo-tile{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--sand);border:1px solid var(--gold-line);}
+  .photo-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-tile button{
+    position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:none;
+    background:rgba(42,29,34,.75);color:#fff;font-weight:700;cursor:pointer;line-height:1;
+  }
+  .photo-tile button:hover{background:var(--rose-deep);}
+  .empty-note{color:var(--ink-soft);font-size:.9rem;}
+  details{margin-top:2em;border-top:1px solid var(--gold-line);padding-top:1.2em;}
+  summary{cursor:pointer;font-weight:600;color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="card" id="loginCard">
+  <p class="wordmark">Debs <em>Beauty</em> Lounge</p>
+  <h2>Gallery admin</h2>
+  <p class="subtext">Log in to add or remove photos from the site's gallery.</p>
+  <form id="loginForm">
+    <label for="loginEmail">Email</label>
+    <input type="email" id="loginEmail" required autocomplete="username">
+    <label for="loginPassword">Password</label>
+    <input type="password" id="loginPassword" required autocomplete="current-password">
+    <button type="submit" class="btn btn-wide">Log in</button>
+    <p id="loginStatus" class="status" role="status"></p>
+  </form>
+</div>
+
+<div class="card hidden" id="adminCard">
+  <div class="admin-header">
+    <div>
+      <p class="wordmark">Debs <em>Beauty</em> Lounge</p>
+      <h2>Gallery admin</h2>
+    </div>
+    <button class="btn btn-ghost" id="logoutBtn" type="button">Log out</button>
+  </div>
+
+  <div class="upload-zone">
+    <label for="fileInput">Add photos</label>
+    <input type="file" id="fileInput" accept="image/*" multiple>
+    <button class="btn btn-wide" id="uploadBtn" type="button">Upload to gallery</button>
+    <p id="uploadStatus" class="status" role="status"></p>
+  </div>
+
+  <p class="subtext" style="margin-bottom:.4em;">Current photos — these are the ones showing on the site right now.</p>
+  <div id="photoGrid" class="photo-grid"></div>
+  <p id="emptyNote" class="empty-note hidden">No photos uploaded yet. Add some above and they'll appear on the site right away.</p>
+
+  <details>
+    <summary>Change password</summary>
+    <div style="margin-top:1em;">
+      <label for="newPassword">New password</label>
+      <input type="password" id="newPassword" autocomplete="new-password">
+      <button class="btn" id="changePasswordBtn" type="button">Update password</button>
+      <p id="passwordStatus" class="status" role="status"></p>
+    </div>
+  </details>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://yzugrjqmpnfplyumtder.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_yjr5mZAjQH-_WhH3IRAghg_e0AZaF7Z';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const loginCard = document.getElementById('loginCard');
+  const adminCard = document.getElementById('adminCard');
+  const loginForm = document.getElementById('loginForm');
+  const loginStatus = document.getElementById('loginStatus');
+  const uploadStatus = document.getElementById('uploadStatus');
+  const passwordStatus = document.getElementById('passwordStatus');
+  const photoGrid = document.getElementById('photoGrid');
+  const emptyNote = document.getElementById('emptyNote');
+
+  function showAdmin(){
+    loginCard.classList.add('hidden');
+    adminCard.classList.remove('hidden');
+    refreshPhotos();
+  }
+  function showLogin(){
+    adminCard.classList.add('hidden');
+    loginCard.classList.remove('hidden');
+  }
+
+  // Stay logged in across visits/refreshes
+  supabase.auth.getSession().then(({ data }) => {
+    if (data.session) showAdmin();
+  });
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    loginStatus.textContent = 'Logging in…';
+    loginStatus.className = 'status';
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error){
+      loginStatus.textContent = 'Could not log in — check the email and password.';
+      loginStatus.className = 'status error';
+    } else {
+      loginStatus.textContent = '';
+      showAdmin();
+    }
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    showLogin();
+  });
+
+  async function refreshPhotos(){
+    const { data, error } = await supabase.storage.from('gallery')
+      .list('', { sortBy: { column: 'created_at', order: 'desc' } });
+    photoGrid.innerHTML = '';
+    if (error || !data || data.length === 0){
+      emptyNote.classList.remove('hidden');
+      return;
+    }
+    emptyNote.classList.add('hidden');
+    data.forEach((file) => {
+      const { data: pub } = supabase.storage.from('gallery').getPublicUrl(file.name);
+      const tile = document.createElement('div');
+      tile.className = 'photo-tile';
+      tile.innerHTML = `<img src="${pub.publicUrl}" alt="">
+        <button type="button" title="Delete photo" aria-label="Delete photo">×</button>`;
+      tile.querySelector('button').addEventListener('click', () => deletePhoto(file.name));
+      photoGrid.appendChild(tile);
+    });
+  }
+
+  async function deletePhoto(name){
+    if (!confirm('Remove this photo from the gallery?')) return;
+    await supabase.storage.from('gallery').remove([name]);
+    refreshPhotos();
+  }
+
+  document.getElementById('uploadBtn').addEventListener('click', async () => {
+    const input = document.getElementById('fileInput');
+    const files = input.files;
+    if (!files || files.length === 0){
+      uploadStatus.textContent = 'Choose at least one photo first.';
+      uploadStatus.className = 'status error';
+      return;
+    }
+    uploadStatus.textContent = 'Uploading…';
+    uploadStatus.className = 'status';
+    let failed = 0;
+    for (const file of files){
+      const path = `${Date.now()}-${file.name}`;
+      const { error } = await supabase.storage.from('gallery').upload(path, file);
+      if (error) failed++;
+    }
+    if (failed === 0){
+      uploadStatus.textContent = 'Uploaded! It\'s live on the site now.';
+      uploadStatus.className = 'status success';
+    } else {
+      uploadStatus.textContent = `${failed} photo(s) failed to upload — try again.`;
+      uploadStatus.className = 'status error';
+    }
+    input.value = '';
+    refreshPhotos();
+  });
+
+  document.getElementById('changePasswordBtn').addEventListener('click', async () => {
+    const newPassword = document.getElementById('newPassword').value;
+    if (!newPassword || newPassword.length < 8){
+      passwordStatus.textContent = 'Use at least 8 characters.';
+      passwordStatus.className = 'status error';
+      return;
+    }
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error){
+      passwordStatus.textContent = 'Could not update password — try again.';
+      passwordStatus.className = 'status error';
+    } else {
+      passwordStatus.textContent = 'Password updated.';
+      passwordStatus.className = 'status success';
+      document.getElementById('newPassword').value = '';
+    }
+  });
+</script>
+</body>
+</html>
