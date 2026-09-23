@@ -111,6 +111,7 @@
   .category-tile span{position:relative;z-index:1;color:#FBF7F2;font-family:'Fraunces',serif;font-size:1.3rem;}
   .category-tile.no-photo{background-color:var(--sand);}
   @media (max-width:700px){.category-tiles{grid-template-columns:1fr;}}
+  @media (max-width:700px){.category-tiles{display:none;}}
 
   /* ---------- about ---------- */
   .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:3.5em;align-items:center;}
@@ -226,7 +227,7 @@
   /* ---------- mobile category picker ---------- */
   .mobile-picker{display:none;}
   @media (max-width:700px){
-    .mobile-picker{display:flex;gap:.9em;justify-content:center;flex-wrap:wrap;margin:2em 0 .5em;}
+    .mobile-picker{display:flex;gap:.9em;justify-content:center;flex-wrap:wrap;margin:2em 0 .5em;padding:0 1.2em;}
     .picker-card{
       background:var(--paper);border:1px solid var(--gold-line);border-radius:4px;
       padding:1.1em .6em;width:100px;display:flex;flex-direction:column;align-items:center;gap:.5em;
@@ -381,6 +382,33 @@
     </button>
   </div>
 
+  <div class="mobile-picker" id="mobilePicker">
+    <button type="button" class="picker-card card-1" data-target="bridalGroup" aria-expanded="false">
+      <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="40" cy="40" r="5"/>
+        <path d="M40,35 C34,25 26,25 22,33 C18,41 26,45 34,41"/>
+        <path d="M45,35 C51,25 59,25 63,33 C67,41 59,45 51,41"/>
+        <path d="M40,45 C34,55 26,55 22,47 C18,39 26,35 34,39"/>
+        <path d="M45,45 C51,55 59,55 63,47 C67,39 59,35 51,39"/>
+      </svg>
+      <span class="picker-label">Bridal Glam</span>
+    </button>
+    <button type="button" class="picker-card card-2" data-target="eventsGroup" aria-expanded="false">
+      <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40,10 L45,34 L70,40 L45,46 L40,70 L35,46 L10,40 L35,34 Z"/>
+      </svg>
+      <span class="picker-label">Event Glam</span>
+    </button>
+    <button type="button" class="picker-card card-3" data-target="classesGroup" aria-expanded="false">
+      <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50,8 L54,42"/>
+        <rect x="47" y="38" width="10" height="8" rx="2"/>
+        <path d="M38,46 C38,38 66,38 66,46 C66,60 56,74 52,78 C48,74 38,60 38,46 Z"/>
+      </svg>
+      <span class="picker-label">Makeup Classes</span>
+    </button>
+  </div>
+
   <hr class="rule">
 
   <section class="about" id="about">
@@ -402,33 +430,6 @@
     <h2>What Debs creates</h2>
     <p class="eyebrow-free-lede">Pick a look, then carry it straight into the booking form below.</p>
     <p class="eyebrow-free-lede" style="margin-top:.6em;"><strong>Studio rates:</strong> Studio Glam $200 · Home Service/Call $350 · Touch Up $90/hr · travel outside Hamilton/Greater Hamilton Area billed at $1.5/km.</p>
-
-    <div class="mobile-picker" id="mobilePicker">
-      <button type="button" class="picker-card card-1" data-target="bridalGroup" aria-expanded="false">
-        <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="40" cy="40" r="5"/>
-          <path d="M40,35 C34,25 26,25 22,33 C18,41 26,45 34,41"/>
-          <path d="M45,35 C51,25 59,25 63,33 C67,41 59,45 51,41"/>
-          <path d="M40,45 C34,55 26,55 22,47 C18,39 26,35 34,39"/>
-          <path d="M45,45 C51,55 59,55 63,47 C67,39 59,35 51,39"/>
-        </svg>
-        <span class="picker-label">Bridal Glam</span>
-      </button>
-      <button type="button" class="picker-card card-2" data-target="eventsGroup" aria-expanded="false">
-        <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M40,10 L45,34 L70,40 L45,46 L40,70 L35,46 L10,40 L35,34 Z"/>
-        </svg>
-        <span class="picker-label">Event Glam</span>
-      </button>
-      <button type="button" class="picker-card card-3" data-target="classesGroup" aria-expanded="false">
-        <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M50,8 L54,42"/>
-          <rect x="47" y="38" width="10" height="8" rx="2"/>
-          <path d="M38,46 C38,38 66,38 66,46 C66,60 56,74 52,78 C48,74 38,60 38,46 Z"/>
-        </svg>
-        <span class="picker-label">Makeup Classes</span>
-      </button>
-    </div>
 
     <div class="service-group" id="bridalGroup">
       <h3>Bridal glam</h3>
