@@ -77,15 +77,16 @@
   /* ---------- hero ---------- */
   .hero{
     position:relative;min-height:88vh;display:flex;align-items:flex-end;
-    background-size:cover;background-position:center 25%;padding:0;
+    padding:0;background:var(--ink);
   }
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.4;}
   .hero::before{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(0deg, rgba(20,10,14,.78) 0%, rgba(20,10,14,.35) 45%, rgba(20,10,14,.05) 75%);
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(0deg, rgba(20,10,14,.85) 0%, rgba(20,10,14,.55) 45%, rgba(20,10,14,.3) 75%, rgba(20,10,14,.2) 100%);
   }
-  .hero-inner{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 1.5em 4.5em;width:100%;}
+  .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:0 1.5em 4.5em;width:100%;}
   .hero-eyebrow{font-size:.82rem;letter-spacing:.08em;color:var(--rose);margin-bottom:.6em;}
-  .hero h1{font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.12;max-width:16ch;color:#FBF7F2;}
+  .hero h1{font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.12;max-width:16ch;color:#FBF7F2;font-weight:700;}
   .hero .lede{max-width:44ch;font-size:1.08rem;margin-top:1em;color:rgba(251,247,242,.85);}
   .hero-actions{display:flex;gap:1em;flex-wrap:wrap;margin-top:1.8em;}
   .hero .btn-outline{border-color:#FBF7F2;color:#FBF7F2;}
@@ -241,12 +242,21 @@
     .picker-label{font-size:.76rem;font-weight:600;color:var(--ink);text-align:center;line-height:1.2;}
 
     .service-group{display:none;}
-    .service-group.mobile-open{display:block;animation:groupOpen .3s ease;}
-    @keyframes groupOpen{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+    .service-group.mobile-open{
+      display:block;position:fixed;inset:0;z-index:250;background:var(--cream);
+      overflow-y:auto;padding:5.5em 1.5em 4em;margin-top:0;
+      animation:groupOpen .3s ease;
+    }
+    @keyframes groupOpen{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+    body.category-open{overflow:hidden;}
 
-    .mobile-group-photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--gold-line);margin-bottom:1.2em;}
+    .mobile-group-photo{display:block;width:100%;height:auto;border:1px solid var(--gold-line);margin-bottom:1.2em;}
+    .mobile-close{
+      display:block;position:absolute;top:1.6em;right:1.5em;width:40px;height:40px;border-radius:50%;
+      border:1px solid var(--gold-line);background:var(--paper);font-size:1.3rem;line-height:1;cursor:pointer;color:var(--ink);z-index:1;
+    }
   }
-  @media (min-width:701px){.mobile-group-photo{display:none;}}
+  @media (min-width:701px){.mobile-group-photo{display:none;}.mobile-close{display:none;}}
 
   /* ---------- policies panel ---------- */
   .policies-panel{
@@ -358,7 +368,10 @@
 </header>
 
 <main>
-  <section class="hero" id="top" style="background-image:url('bridal-glam.jpg');">
+  <section class="hero" id="top">
+    <video class="hero-video" autoplay muted loop playsinline poster="hero-video-poster.jpg">
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
     <div class="hero-inner">
       <p class="hero-eyebrow">Bridal Glam</p>
       <h1>Bridal glam that stays flawless from your vows to your last dance.</h1>
@@ -419,10 +432,6 @@
     <div class="about-copy">
       <h2>Meet Debs</h2>
       <p>Debs built Debs Beauty Lounge around one idea: makeup should feel as good as it looks. Whether it's a full bridal party the morning of a wedding or a quick birthday glam before a night out, every session is built around your skin, your event, and how long you need the look to last — with a relaxed, unrushed experience in studio or wherever you are.</p>
-      <div class="credentials">
-        <p style="margin-bottom:.3em;">[X] years of experience · Trained at [school or mentor name]</p>
-        <p style="margin-bottom:0;">Based in [city] · Serving [areas you travel to]</p>
-      </div>
     </div>
   </section>
 
@@ -432,6 +441,7 @@
     <p class="eyebrow-free-lede" style="margin-top:.6em;"><strong>Studio rates:</strong> Studio Glam $200 · Home Service/Call $350 · Touch Up $90/hr · travel outside Hamilton/Greater Hamilton Area billed at $1.5/km.</p>
 
     <div class="service-group" id="bridalGroup">
+      <button type="button" class="mobile-close" data-target="bridalGroup" aria-label="Close">×</button>
       <h3>Bridal glam</h3>
       <img class="mobile-group-photo" src="bridal-traditional.jpg" alt="Bridal makeup look">
       <p class="group-note">Packages for the bride herself, plus bridal party and trial sessions.</p>
@@ -465,6 +475,7 @@
     </div>
 
     <div class="service-group" id="eventsGroup">
+      <button type="button" class="mobile-close" data-target="eventsGroup" aria-label="Close">×</button>
       <h3>Events makeup</h3>
       <img class="mobile-group-photo" src="event-glam.jpg" alt="Event makeup look">
       <p class="group-note">Birthday glam, photoshoots, dinners and other occasions where you want the camera to love you back.</p>
@@ -487,6 +498,7 @@
     </div>
 
     <div class="service-group" id="classesGroup">
+      <button type="button" class="mobile-close" data-target="classesGroup" aria-label="Close">×</button>
       <h3>Makeup classes</h3>
       <p class="group-note">Learn Debs' technique directly, one-on-one, or come back for an upgrade session once you've got the basics.</p>
 
@@ -514,7 +526,6 @@
       <figure class="shade-card photo-card"><img src="event-glam.jpg" alt="Event makeup look by Debs Beauty Lounge"></figure>
       <figure class="shade-card photo-card"><img src="hero-glam.jpg" alt="Editorial makeup look by Debs Beauty Lounge"></figure>
       <figure class="shade-card photo-card"><img src="dinner-glam.jpg" alt="Evening makeup look by Debs Beauty Lounge"></figure>
-      <figure class="shade-card"><span>1-on-1 class</span></figure>
     </div>
   </section>
 
@@ -609,13 +620,15 @@
   <div class="footer-wrap">
     <div>
       <h4>Debs Beauty Lounge</h4>
-      <p>[Studio address or "mobile — I travel to you"]</p>
-      <p>[Areas served]</p>
     </div>
     <div>
       <h4>Contact</h4>
       <p>hello@debsbeautylounge.com</p>
-      <p>[Phone number]</p>
+      <p>+1 (226) 883-2267</p>
+      <p class="footer-payment">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:.4em;"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        Interac e-Transfer accepted
+      </p>
     </div>
     <div>
       <h4>Follow</h4>
@@ -671,22 +684,18 @@
     navToggle.setAttribute('aria-expanded', 'false');
   }));
 
-  // Mobile category picker: tap a card to reveal that service group
+  // Mobile category picker: tap a card to open that category as a full page
   document.querySelectorAll('.picker-card').forEach(card => {
     card.addEventListener('click', () => {
       const target = document.getElementById(card.dataset.target);
-      const isOpen = target.classList.contains('mobile-open');
-      document.querySelectorAll('.service-group').forEach(g => g.classList.remove('mobile-open'));
-      document.querySelectorAll('.picker-card').forEach(c => {
-        c.classList.remove('active');
-        c.setAttribute('aria-expanded', 'false');
-      });
-      if (!isOpen){
-        target.classList.add('mobile-open');
-        card.classList.add('active');
-        card.setAttribute('aria-expanded', 'true');
-        setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'start'}), 60);
-      }
+      target.classList.add('mobile-open');
+      document.body.classList.add('category-open');
+    });
+  });
+  document.querySelectorAll('.mobile-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.dataset.target).classList.remove('mobile-open');
+      document.body.classList.remove('category-open');
     });
   });
 
