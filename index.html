@@ -222,6 +222,68 @@
   .intro-skip{position:absolute;bottom:8vh;font-size:.78rem;color:var(--ink-soft);opacity:.55;letter-spacing:.05em;}
   @media (prefers-reduced-motion:reduce){.intro-overlay{display:none;}}
   @media (max-width:480px){.intro-stage{height:160px;}}
+
+  /* ---------- mobile category picker ---------- */
+  .mobile-picker{display:none;}
+  @media (max-width:700px){
+    .mobile-picker{display:flex;gap:.9em;justify-content:center;flex-wrap:wrap;margin:2em 0 .5em;}
+    .picker-card{
+      background:var(--paper);border:1px solid var(--gold-line);border-radius:4px;
+      padding:1.1em .6em;width:100px;display:flex;flex-direction:column;align-items:center;gap:.5em;
+      cursor:pointer;font-family:'Jost',sans-serif;transition:transform .2s ease,border-color .2s ease;
+    }
+    .picker-card.card-1{transform:rotate(-4deg);}
+    .picker-card.card-2{transform:rotate(3deg);margin-top:1.1em;}
+    .picker-card.card-3{transform:rotate(-2deg);}
+    .picker-card.active{transform:rotate(0deg) scale(1.04);border-color:var(--rose-deep);}
+    .picker-icon{width:38px;height:38px;}
+    .picker-label{font-size:.76rem;font-weight:600;color:var(--ink);text-align:center;line-height:1.2;}
+
+    .service-group{display:none;}
+    .service-group.mobile-open{display:block;animation:groupOpen .3s ease;}
+    @keyframes groupOpen{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+
+    .mobile-group-photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--gold-line);margin-bottom:1.2em;}
+  }
+  @media (min-width:701px){.mobile-group-photo{display:none;}}
+
+  /* ---------- policies panel ---------- */
+  .policies-panel{
+    position:fixed;inset:0;z-index:300;background:var(--cream);
+    transform:translateY(100%);transition:transform .35s ease;overflow-y:auto;
+  }
+  .policies-panel.open{transform:translateY(0);}
+  .policies-panel-inner{max-width:720px;margin:0 auto;padding:5.5em 1.5em 4em;position:relative;}
+  .policies-close{
+    position:absolute;top:1.6em;right:1.5em;width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--gold-line);background:var(--paper);font-size:1.3rem;line-height:1;cursor:pointer;color:var(--ink);
+  }
+  body.policies-open{overflow:hidden;}
+
+  /* ---------- footer brand ---------- */
+  .footer-brand{text-align:center;padding:2em 0 .5em;}
+  .footer-brand-stage{position:relative;display:inline-block;}
+  .footer-brand-big{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(3.2rem,14vw,7.5rem);color:var(--cream);letter-spacing:.02em;line-height:1;
+    text-shadow:
+      1px 1px 0 var(--gold),2px 2px 0 var(--gold),3px 3px 0 var(--gold),4px 4px 0 var(--gold),
+      5px 5px 0 var(--gold),6px 6px 0 var(--gold),7px 7px 0 var(--gold),8px 8px 0 var(--gold),
+      9px 9px 0 var(--gold),10px 10px 0 var(--gold),11px 11px 16px rgba(0,0,0,.35);
+  }
+  .footer-brush-orbit{position:absolute;width:34px;height:46px;top:12%;left:50%;animation:brushOrbit 7s linear infinite;}
+  @keyframes brushOrbit{
+    0%{transform:translate(-130px,10px) rotate(-10deg);}
+    25%{transform:translate(90px,-26px) rotate(15deg);}
+    50%{transform:translate(130px,34px) rotate(-8deg);}
+    75%{transform:translate(-80px,42px) rotate(12deg);}
+    100%{transform:translate(-130px,10px) rotate(-10deg);}
+  }
+  .footer-brand-sub{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:clamp(1.3rem,3.5vw,2rem);color:var(--rose);margin-top:-.15em;
+  }
+  @media (prefers-reduced-motion:reduce){.footer-brush-orbit{animation:none;}}
 </style>
 </head>
 <body>
@@ -249,6 +311,34 @@
   <p class="intro-skip">tap to skip</p>
 </div>
 
+<div id="policiesPanel" class="policies-panel" aria-hidden="true">
+  <div class="policies-panel-inner">
+    <button type="button" class="policies-close" id="policiesClose" aria-label="Close">×</button>
+    <h2>Booking policies</h2>
+    <p class="eyebrow-free-lede">The essentials, so there are no surprises on the day.</p>
+    <div class="service-group" style="margin-top:1.6em;display:block;">
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Glam sessions usually take about 1.5 hours for the best results.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>A 50% deposit validates and secures your date and time slot. Deposits are non-refundable.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Rescheduling is available within a 30-day window from your original date, subject to availability.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Appointments are canceled if they haven't started within 15 minutes of the scheduled time.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Business hours are 7am–7pm. Special-request hours outside this window are billed a flat $100.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;border-bottom:1px solid var(--gold-line);">
+        <span>Parking, valet and toll fees are the client's responsibility and are added to the final bill, due on the day.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="nav-wrap">
     <a href="#top" class="wordmark">
@@ -260,6 +350,7 @@
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#gallery">Portfolio</a>
+      <a href="#" id="policiesNavLink">Policies</a>
       <a href="#book" class="nav-cta">Book now</a>
     </nav>
   </div>
@@ -312,8 +403,36 @@
     <p class="eyebrow-free-lede">Pick a look, then carry it straight into the booking form below.</p>
     <p class="eyebrow-free-lede" style="margin-top:.6em;"><strong>Studio rates:</strong> Studio Glam $200 · Home Service/Call $350 · Touch Up $90/hr · travel outside Hamilton/Greater Hamilton Area billed at $1.5/km.</p>
 
-    <div class="service-group">
+    <div class="mobile-picker" id="mobilePicker">
+      <button type="button" class="picker-card card-1" data-target="bridalGroup" aria-expanded="false">
+        <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="40" cy="40" r="5"/>
+          <path d="M40,35 C34,25 26,25 22,33 C18,41 26,45 34,41"/>
+          <path d="M45,35 C51,25 59,25 63,33 C67,41 59,45 51,41"/>
+          <path d="M40,45 C34,55 26,55 22,47 C18,39 26,35 34,39"/>
+          <path d="M45,45 C51,55 59,55 63,47 C67,39 59,35 51,39"/>
+        </svg>
+        <span class="picker-label">Bridal Glam</span>
+      </button>
+      <button type="button" class="picker-card card-2" data-target="eventsGroup" aria-expanded="false">
+        <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M40,10 L45,34 L70,40 L45,46 L40,70 L35,46 L10,40 L35,34 Z"/>
+        </svg>
+        <span class="picker-label">Event Glam</span>
+      </button>
+      <button type="button" class="picker-card card-3" data-target="classesGroup" aria-expanded="false">
+        <svg class="picker-icon" viewBox="0 0 80 80" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M50,8 L54,42"/>
+          <rect x="47" y="38" width="10" height="8" rx="2"/>
+          <path d="M38,46 C38,38 66,38 66,46 C66,60 56,74 52,78 C48,74 38,60 38,46 Z"/>
+        </svg>
+        <span class="picker-label">Makeup Classes</span>
+      </button>
+    </div>
+
+    <div class="service-group" id="bridalGroup">
       <h3>Bridal glam</h3>
+      <img class="mobile-group-photo" src="bridal-traditional.jpg" alt="Bridal makeup look">
       <p class="group-note">Packages for the bride herself, plus bridal party and trial sessions.</p>
 
       <div class="service-row">
@@ -344,8 +463,9 @@
       <p style="font-size:.85rem;margin-top:.8em;">Bridal trial fee is chargeable — 50% is refunded once your wedding booking is confirmed (deposit paid, contract signed). Additional bridal touch up is $150/hr.</p>
     </div>
 
-    <div class="service-group">
+    <div class="service-group" id="eventsGroup">
       <h3>Events makeup</h3>
+      <img class="mobile-group-photo" src="event-glam.jpg" alt="Event makeup look">
       <p class="group-note">Birthday glam, photoshoots, dinners and other occasions where you want the camera to love you back.</p>
 
       <div class="service-row">
@@ -365,7 +485,7 @@
       </div>
     </div>
 
-    <div class="service-group">
+    <div class="service-group" id="classesGroup">
       <h3>Makeup classes</h3>
       <p class="group-note">Learn Debs' technique directly, one-on-one, or come back for an upgrade session once you've got the basics.</p>
 
@@ -378,33 +498,6 @@
         <span class="name">Upgrade Class</span>
         <span class="price">Contact for pricing</span>
         <button type="button" class="btn btn-small" onclick="chooseService('Upgrade Class')">Select</button>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <section class="policies">
-    <h2>Booking policies</h2>
-    <p class="eyebrow-free-lede">The essentials, so there are no surprises on the day.</p>
-    <div class="service-group" style="margin-top:1.6em;">
-      <div class="service-row" style="grid-template-columns:1fr;">
-        <span>Glam sessions usually take about 1.5 hours for the best results.</span>
-      </div>
-      <div class="service-row" style="grid-template-columns:1fr;">
-        <span>A 50% deposit validates and secures your date and time slot. Deposits are non-refundable.</span>
-      </div>
-      <div class="service-row" style="grid-template-columns:1fr;">
-        <span>Rescheduling is available within a 30-day window from your original date, subject to availability.</span>
-      </div>
-      <div class="service-row" style="grid-template-columns:1fr;">
-        <span>Appointments are canceled if they haven't started within 15 minutes of the scheduled time.</span>
-      </div>
-      <div class="service-row" style="grid-template-columns:1fr;">
-        <span>Business hours are 7am–7pm. Special-request hours outside this window are billed a flat $100.</span>
-      </div>
-      <div class="service-row" style="grid-template-columns:1fr;border-bottom:1px solid var(--gold-line);">
-        <span>Parking, valet and toll fees are the client's responsibility and are added to the final bill, due on the day.</span>
       </div>
     </div>
   </section>
@@ -528,6 +621,19 @@
       <p><a href="https://instagram.com/Debsbeautylounge" target="_blank" rel="noopener">Instagram @Debsbeautylounge</a></p>
     </div>
   </div>
+  <div class="footer-brand">
+    <div class="footer-brand-stage">
+      <span class="footer-brand-big">DEBS</span>
+      <svg class="footer-brush-orbit" viewBox="0 0 60 80">
+        <g transform="rotate(35 30 40)">
+          <rect x="26" y="4" width="8" height="40" rx="4" fill="#B4924F"/>
+          <rect x="24" y="36" width="12" height="10" rx="2" fill="#FBF7F2"/>
+          <path d="M16 44 C16 30 44 30 44 44 C44 60 36 74 30 80 C24 74 16 60 16 44 Z" fill="#C98499"/>
+        </g>
+      </svg>
+    </div>
+    <p class="footer-brand-sub">Beauty Lounge</p>
+  </div>
   <p class="footer-bottom">© <span id="year"></span> Debs Beauty Lounge</p>
 </footer>
 
@@ -563,6 +669,42 @@
     siteNav.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
   }));
+
+  // Mobile category picker: tap a card to reveal that service group
+  document.querySelectorAll('.picker-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const target = document.getElementById(card.dataset.target);
+      const isOpen = target.classList.contains('mobile-open');
+      document.querySelectorAll('.service-group').forEach(g => g.classList.remove('mobile-open'));
+      document.querySelectorAll('.picker-card').forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen){
+        target.classList.add('mobile-open');
+        card.classList.add('active');
+        card.setAttribute('aria-expanded', 'true');
+        setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'start'}), 60);
+      }
+    });
+  });
+
+  // Booking policies panel, opened from the nav instead of living inline on the page
+  const policiesPanel = document.getElementById('policiesPanel');
+  const policiesClose = document.getElementById('policiesClose');
+  function openPolicies(e){
+    if (e) e.preventDefault();
+    policiesPanel.classList.add('open');
+    policiesPanel.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('policies-open');
+  }
+  function closePolicies(){
+    policiesPanel.classList.remove('open');
+    policiesPanel.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('policies-open');
+  }
+  document.getElementById('policiesNavLink').addEventListener('click', openPolicies);
+  policiesClose.addEventListener('click', closePolicies);
 
   function chooseService(value){
     const mainSelect = document.getElementById('service');
