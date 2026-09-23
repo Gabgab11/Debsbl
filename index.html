@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debs Beauty Lounge — Bridal, Event & Class Bookings</title>
+<meta name="description" content="Book bridal, wedding, event makeup or a makeup class with Debs Beauty Lounge.">
+<meta name="color-scheme" content="light only">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%84%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7F2;
+    --paper:#FFFDFB;
+    --sand:#EEE1D2;
+    --ink:#2A1D22;
+    --ink-soft:#5C4A52;
+    --rose:#C98499;
+    --rose-deep:#93435A;
+    --gold:#B4924F;
+    --gold-line:rgba(180,146,79,.4);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none!important;transition:none!important;}
+  }
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;line-height:1.6;}
+  h1,h2,h3,.wordmark{font-family:'Fraunces',serif;color:var(--ink);margin:0;font-weight:500;}
+  p{margin:0 0 1em;color:var(--ink-soft);}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  :focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;}
+  .placeholder-note{font-style:italic;font-size:.82rem;color:var(--gold);}
+
+  .btn{
+    display:inline-block;padding:.85em 1.7em;border-radius:2px;font-weight:600;
+    text-decoration:none;border:1px solid var(--ink);cursor:pointer;font-family:'Jost',sans-serif;
+    font-size:.92rem;letter-spacing:.02em;transition:background .15s ease, color .15s ease;
+    background:var(--ink);color:var(--paper);
+  }
+  .btn:hover{background:var(--rose-deep);border-color:var(--rose-deep);}
+  .btn-outline{background:transparent;color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--paper);}
+  .btn-small{padding:.6em 1.1em;font-size:.82rem;}
+  .btn-wide{width:100%;text-align:center;padding:1em;font-size:1rem;}
+
+  /* ---------- header ---------- */
+  .site-header{position:sticky;top:0;z-index:50;background:rgba(251,247,242,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--gold-line);}
+  .nav-wrap{max-width:1180px;margin:0 auto;padding:1.1em 1.5em;display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-size:1.3rem;text-decoration:none;display:flex;align-items:center;gap:.5em;}
+  .wordmark .mark{display:inline-flex;gap:3px;}
+  .wordmark .mark span{width:6px;height:6px;border-radius:50%;background:var(--rose);}
+  .wordmark .mark span:nth-child(2){background:var(--gold);}
+  .wordmark .mark span:nth-child(3){background:var(--rose-deep);}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.4rem;color:var(--ink);cursor:pointer;}
+  nav#siteNav{display:flex;align-items:center;gap:2em;}
+  nav#siteNav a{text-decoration:none;font-weight:500;font-size:.92rem;color:var(--ink);}
+  nav#siteNav a.nav-cta{border:1px solid var(--ink);padding:.5em 1.1em;}
+  nav#siteNav a.nav-cta:hover{background:var(--ink);color:var(--paper);}
+
+  @media (max-width:760px){
+    .nav-toggle{display:block;}
+    nav#siteNav{position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;align-items:flex-start;gap:0;padding:0 1.5em;max-height:0;overflow:hidden;border-bottom:1px solid var(--gold-line);transition:max-height .25s ease;}
+    nav#siteNav.open{max-height:280px;padding:1em 1.5em;}
+    nav#siteNav a{padding:.6em 0;width:100%;}
+    nav#siteNav a.nav-cta{margin-top:.5em;text-align:center;}
+  }
+
+  section{padding:5.5em 1.5em;max-width:1180px;margin:0 auto;}
+  .eyebrow-free-lede{max-width:48ch;}
+  hr.rule{border:none;border-top:1px solid var(--gold-line);max-width:1180px;margin:0 auto;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:88vh;display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 25%;padding:0;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(20,10,14,.78) 0%, rgba(20,10,14,.35) 45%, rgba(20,10,14,.05) 75%);
+  }
+  .hero-inner{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 1.5em 4.5em;width:100%;}
+  .hero-eyebrow{font-size:.82rem;letter-spacing:.08em;color:var(--rose);margin-bottom:.6em;}
+  .hero h1{font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.12;max-width:16ch;color:#FBF7F2;}
+  .hero .lede{max-width:44ch;font-size:1.08rem;margin-top:1em;color:rgba(251,247,242,.85);}
+  .hero-actions{display:flex;gap:1em;flex-wrap:wrap;margin-top:1.8em;}
+  .hero .btn-outline{border-color:#FBF7F2;color:#FBF7F2;}
+  .hero .btn-outline:hover{background:#FBF7F2;color:var(--ink);}
+
+  .portrait-frame{
+    aspect-ratio:4/5;background:var(--sand);border:1px solid var(--gold-line);
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:2em;
+  }
+  .portrait-frame.photo-card{padding:0;}
+  .portrait-frame.photo-card img{width:100%;height:100%;object-fit:cover;}
+  @media (max-width:700px){
+    .hero{min-height:78vh;background-position:center 20%;}
+  }
+
+  /* ---------- category tiles ---------- */
+  .category-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);}
+  .category-tile{
+    position:relative;aspect-ratio:3/4;background-size:cover;background-position:center;
+    display:flex;align-items:flex-end;padding:1.6em;border:none;text-align:left;cursor:pointer;
+  }
+  .category-tile::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,10,14,.75), rgba(20,10,14,.05) 55%);}
+  .category-tile span{position:relative;z-index:1;color:#FBF7F2;font-family:'Fraunces',serif;font-size:1.3rem;}
+  .category-tile.no-photo{background-color:var(--sand);}
+  @media (max-width:700px){.category-tiles{grid-template-columns:1fr;}}
+
+  /* ---------- about ---------- */
+  .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:3.5em;align-items:center;}
+  .about .portrait-frame{aspect-ratio:3/4;}
+  .about-copy .credentials{margin-top:1.4em;padding-top:1.2em;border-top:1px solid var(--gold-line);font-size:.9rem;color:var(--ink-soft);}
+  @media (max-width:900px){
+    .about{grid-template-columns:1fr;}
+    .about .portrait-frame{max-width:300px;margin:0 auto;}
+  }
+
+  /* ---------- services ---------- */
+  .service-group{margin-top:2.6em;}
+  .service-group h3{font-size:1.2rem;margin-bottom:.2em;}
+  .service-group .group-note{margin-bottom:1.2em;}
+  .service-row{
+    display:grid;grid-template-columns:1.4fr auto auto;gap:1.5em;align-items:center;
+    padding:1.4em 0;border-top:1px solid var(--gold-line);
+  }
+  .service-group:last-child .service-row:last-child{border-bottom:1px solid var(--gold-line);}
+  .service-row .name{font-weight:600;}
+  .service-row .price{font-size:.88rem;color:var(--ink-soft);white-space:nowrap;}
+  .service-row select{min-width:150px;}
+  @media (max-width:700px){
+    .service-row{grid-template-columns:1fr;gap:.6em;}
+  }
+
+  select, input, textarea{
+    font-family:'Jost',sans-serif;font-size:.95rem;color:var(--ink);
+    padding:.7em .8em;border-radius:2px;border:1px solid var(--gold-line);background:var(--paper);
+  }
+  select:focus, input:focus, textarea:focus{border-color:var(--rose-deep);}
+  select.flash{animation:flash .9s ease;}
+  @keyframes flash{0%{box-shadow:0 0 0 0 rgba(147,67,90,.4);}100%{box-shadow:0 0 0 8px rgba(147,67,90,0);}}
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2em;margin-top:2.2em;}
+  .shade-card{margin:0;aspect-ratio:4/5;background:var(--sand);border:1px solid var(--gold-line);display:flex;align-items:flex-end;padding:1em;}
+  .shade-card span{font-size:.82rem;font-style:italic;color:var(--ink-soft);}
+  .shade-card.photo-card{padding:0;background:none;}
+  .shade-card.photo-card img{width:100%;height:100%;object-fit:cover;display:block;}
+  @media (max-width:800px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- testimonials ---------- */
+  .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2em;margin-top:2.2em;}
+  .testimonial blockquote{margin:0 0 .8em;font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--ink);}
+  .testimonial cite{font-style:normal;font-size:.85rem;color:var(--ink-soft);}
+  @media (max-width:800px){.testimonials-grid{grid-template-columns:1fr;}}
+
+  /* ---------- instagram band ---------- */
+  .insta-band{background:var(--sand);text-align:center;padding:3.5em 1.5em;}
+  .insta-band h2{font-size:1.6rem;}
+  .insta-band p{max-width:40ch;margin:0 auto 1.2em;}
+
+  /* ---------- booking ---------- */
+  .booking{background:var(--paper);}
+  .booking-card{max-width:680px;margin:0 auto;border:1px solid var(--gold-line);padding:3em;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1em;}
+  .field{display:flex;flex-direction:column;gap:.4em;margin-bottom:1em;}
+  .field label{font-size:.82rem;font-weight:600;color:var(--ink-soft);}
+  textarea{resize:vertical;}
+  .form-status{margin-top:1em;font-weight:600;min-height:1.4em;}
+  .form-status.success{color:#1c7a4d;}
+  .form-status.error{color:var(--rose-deep);}
+  @media (max-width:600px){.booking-card{padding:2em 1.4em;}.form-row{grid-template-columns:1fr;}}
+
+  /* ---------- footer ---------- */
+  .site-footer{background:var(--ink);color:var(--cream);padding:3.5em 1.5em 2.5em;}
+  .footer-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2em;}
+  .footer-wrap h4{font-family:'Fraunces',serif;font-weight:500;margin:0 0 .6em;color:var(--cream);}
+  .footer-wrap p{color:rgba(251,247,242,.65);margin:0 0 .3em;font-size:.92rem;}
+  .footer-bottom{max-width:1180px;margin:2.5em auto 0;padding-top:1.5em;border-top:1px solid rgba(251,247,242,.15);font-size:.82rem;color:rgba(251,247,242,.5);}
+  @media (max-width:700px){.footer-wrap{grid-template-columns:1fr;}}
+
+  h2{font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:.3em;}
+
+  /* ---------- brush intro ---------- */
+  .intro-overlay{
+    position:fixed;inset:0;z-index:500;background:var(--cream);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    cursor:pointer;transition:opacity .6s ease;
+  }
+  .intro-overlay.intro-hide{opacity:0;pointer-events:none;}
+  .intro-stage{position:relative;width:min(90vw,560px);height:200px;display:flex;align-items:center;justify-content:center;}
+  .intro-brush-wrap{position:absolute;width:56px;height:70px;left:-10%;top:60%;opacity:0;animation:introMove 1.9s ease-in-out forwards;}
+  @keyframes introMove{
+    0%{left:-8%;top:58%;transform:rotate(-10deg) scale(.9);opacity:0;}
+    10%{opacity:1;}
+    24%{left:14%;top:10%;transform:rotate(8deg) scale(1);}
+    45%{left:38%;top:74%;transform:rotate(-14deg) scale(1);}
+    65%{left:60%;top:8%;transform:rotate(12deg) scale(1);}
+    84%{left:82%;top:66%;transform:rotate(-8deg) scale(1);}
+    96%{left:99%;top:34%;transform:rotate(6deg) scale(1);opacity:1;}
+    100%{left:108%;top:34%;transform:rotate(2deg) scale(.95);opacity:0;}
+  }
+  .intro-sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0;}
+  .intro-sparkle.s1{left:30%;top:22%;animation:introSpark .7s ease .9s forwards;}
+  .intro-sparkle.s2{left:64%;top:64%;animation:introSpark .7s ease 1.4s forwards;}
+  @keyframes introSpark{
+    0%{opacity:0;transform:scale(.3);}
+    40%{opacity:1;transform:scale(1.3);}
+    100%{opacity:0;transform:scale(.4);}
+  }
+  .intro-text-wrap{clip-path:inset(0 100% 0 0);animation:introReveal 1.3s .6s ease forwards;}
+  @keyframes introReveal{to{clip-path:inset(0 0 0 0);}}
+  .intro-text{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,6.2vw,3rem);color:var(--ink);white-space:nowrap;}
+  .intro-underline{display:block;width:min(80vw,460px);height:16px;margin:.5em auto 0;}
+  .intro-underline path{stroke-dasharray:100;stroke-dashoffset:100;animation:introDraw 1.1s .7s ease forwards;}
+  @keyframes introDraw{to{stroke-dashoffset:0;}}
+  .intro-skip{position:absolute;bottom:8vh;font-size:.78rem;color:var(--ink-soft);opacity:.55;letter-spacing:.05em;}
+  @media (prefers-reduced-motion:reduce){.intro-overlay{display:none;}}
+  @media (max-width:480px){.intro-stage{height:160px;}}
+</style>
+</head>
+<body>
+
+<div id="introOverlay" class="intro-overlay" aria-hidden="true">
+  <div class="intro-stage">
+    <div class="intro-brush-wrap">
+      <svg viewBox="0 0 100 140" width="56" height="78">
+        <g transform="rotate(35 50 70)">
+          <rect x="45" y="4" width="10" height="70" rx="5" fill="#2A1D22"/>
+          <rect x="42" y="64" width="16" height="14" rx="3" fill="#B4924F"/>
+          <path d="M30 76 C30 58 70 58 70 76 C70 102 58 128 50 138 C42 128 30 102 30 76 Z" fill="#C98499"/>
+        </g>
+      </svg>
+    </div>
+    <span class="intro-sparkle s1"></span>
+    <span class="intro-sparkle s2"></span>
+    <div class="intro-text-wrap">
+      <span class="intro-text">Debs Beauty Lounge</span>
+      <svg class="intro-underline" viewBox="0 0 400 20" preserveAspectRatio="none">
+        <path d="M5,10 Q200,2 395,10" fill="none" stroke="#B4924F" stroke-width="2" pathLength="100"/>
+      </svg>
+    </div>
+  </div>
+  <p class="intro-skip">tap to skip</p>
+</div>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="#top" class="wordmark">
+      <span class="mark"><span></span><span></span><span></span></span>
+      Debs Beauty Lounge
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav id="siteNav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Portfolio</a>
+      <a href="#book" class="nav-cta">Book now</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top" style="background-image:url('bridal-glam.jpg');">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Bridal Glam</p>
+      <h1>Bridal glam that stays flawless from your vows to your last dance.</h1>
+      <p class="lede">Bridal, traditional and event glam, plus hands-on classes for anyone who wants to learn the technique — booked in under a minute.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn">Book a session</a>
+        <a href="#gallery" class="btn btn-outline">View the portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="category-tiles">
+    <button type="button" class="category-tile" style="background-image:url('bridal-traditional.jpg');" onclick="chooseService('The Signature Bride')">
+      <span>Bridal Glam</span>
+    </button>
+    <button type="button" class="category-tile" style="background-image:url('event-glam.jpg');" onclick="chooseService('Birthday Glam')">
+      <span>Event Glam</span>
+    </button>
+    <button type="button" class="category-tile no-photo" onclick="chooseService('1-on-1 Class')">
+      <span>Makeup Classes</span>
+    </button>
+  </div>
+
+  <hr class="rule">
+
+  <section class="about" id="about">
+    <!-- This is Debs -->
+    <div class="portrait-frame photo-card">
+      <img src="dinner-glam.jpg" alt="Debs, founder of Debs Beauty Lounge">
+    </div>
+    <div class="about-copy">
+      <h2>Meet Debs</h2>
+      <p>Debs built Debs Beauty Lounge around one idea: makeup should feel as good as it looks. Whether it's a full bridal party the morning of a wedding or a quick birthday glam before a night out, every session is built around your skin, your event, and how long you need the look to last — with a relaxed, unrushed experience in studio or wherever you are.</p>
+      <div class="credentials">
+        <p style="margin-bottom:.3em;">[X] years of experience · Trained at [school or mentor name]</p>
+        <p style="margin-bottom:0;">Based in [city] · Serving [areas you travel to]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>What Debs creates</h2>
+    <p class="eyebrow-free-lede">Pick a look, then carry it straight into the booking form below.</p>
+    <p class="eyebrow-free-lede" style="margin-top:.6em;"><strong>Studio rates:</strong> Studio Glam $200 · Home Service/Call $350 · Touch Up $90/hr · travel outside Hamilton/Greater Hamilton Area billed at $1.5/km.</p>
+
+    <div class="service-group">
+      <h3>Bridal glam</h3>
+      <p class="group-note">Packages for the bride herself, plus bridal party and trial sessions.</p>
+
+      <div class="service-row">
+        <span class="name">The Classic Bride</span>
+        <span class="price">$500</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('The Classic Bride')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">The Signature Bride</span>
+        <span class="price">$800</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('The Signature Bride')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">The Luxe Bride</span>
+        <span class="price">$950</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('The Luxe Bride')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">Bridal Party</span>
+        <span class="price">$200</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('Bridal Party')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">Bridal Trial</span>
+        <span class="price">$200</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('Bridal Trial')">Select</button>
+      </div>
+      <p style="font-size:.85rem;margin-top:.8em;">Bridal trial fee is chargeable — 50% is refunded once your wedding booking is confirmed (deposit paid, contract signed). Additional bridal touch up is $150/hr.</p>
+    </div>
+
+    <div class="service-group">
+      <h3>Events makeup</h3>
+      <p class="group-note">Birthday glam, photoshoots, dinners and other occasions where you want the camera to love you back.</p>
+
+      <div class="service-row">
+        <span class="name">Birthday Glam</span>
+        <span class="price">Studio $200 · Home $350</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('Birthday Glam')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">Photoshoot Makeup</span>
+        <span class="price">Studio $200 · Home $350</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('Photoshoot Makeup')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">Dinner &amp; Special Occasion</span>
+        <span class="price">Studio $200 · Home $350</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('Dinner &amp; Special Occasion')">Select</button>
+      </div>
+    </div>
+
+    <div class="service-group">
+      <h3>Makeup classes</h3>
+      <p class="group-note">Learn Debs' technique directly, one-on-one, or come back for an upgrade session once you've got the basics.</p>
+
+      <div class="service-row">
+        <span class="name">1-on-1 Class</span>
+        <span class="price">Contact for pricing</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('1-on-1 Class')">Select</button>
+      </div>
+      <div class="service-row">
+        <span class="name">Upgrade Class</span>
+        <span class="price">Contact for pricing</span>
+        <button type="button" class="btn btn-small" onclick="chooseService('Upgrade Class')">Select</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="policies">
+    <h2>Booking policies</h2>
+    <p class="eyebrow-free-lede">The essentials, so there are no surprises on the day.</p>
+    <div class="service-group" style="margin-top:1.6em;">
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Glam sessions usually take about 1.5 hours for the best results.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>A 50% deposit validates and secures your date and time slot. Deposits are non-refundable.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Rescheduling is available within a 30-day window from your original date, subject to availability.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Appointments are canceled if they haven't started within 15 minutes of the scheduled time.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;">
+        <span>Business hours are 7am–7pm. Special-request hours outside this window are billed a flat $100.</span>
+      </div>
+      <div class="service-row" style="grid-template-columns:1fr;border-bottom:1px solid var(--gold-line);">
+        <span>Parking, valet and toll fees are the client's responsibility and are added to the final bill, due on the day.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="gallery" id="gallery">
+    <h2>Portfolio</h2>
+    <p class="eyebrow-free-lede">A few recent looks. Once Debs uploads more through the gallery admin page, this grid updates on its own.</p>
+    <div class="gallery-grid" id="galleryGrid">
+      <figure class="shade-card photo-card"><img src="bridal-glam.jpg" alt="Bridal makeup look by Debs Beauty Lounge"></figure>
+      <figure class="shade-card photo-card"><img src="bridal-traditional.jpg" alt="Bridal makeup look by Debs Beauty Lounge"></figure>
+      <figure class="shade-card photo-card"><img src="event-glam.jpg" alt="Event makeup look by Debs Beauty Lounge"></figure>
+      <figure class="shade-card photo-card"><img src="hero-glam.jpg" alt="Editorial makeup look by Debs Beauty Lounge"></figure>
+      <figure class="shade-card photo-card"><img src="dinner-glam.jpg" alt="Evening makeup look by Debs Beauty Lounge"></figure>
+      <figure class="shade-card"><span>1-on-1 class</span></figure>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What to expect</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <blockquote>Every look is built around your skin tone, your event, and how long you need it to last — never one-size-fits-all.</blockquote>
+      </div>
+      <div class="testimonial">
+        <blockquote>Bridal trials mean no surprises on the big day, and a complimentary touch-up kit keeps you glowing well past midnight.</blockquote>
+      </div>
+      <div class="testimonial">
+        <blockquote>Studio or on-location — every session is unrushed, relaxed, and built entirely around you.</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <div class="insta-band">
+    <h2>Follow along</h2>
+    <p>New looks, behind-the-scenes and client transformations, posted regularly.</p>
+    <a href="https://instagram.com/Debsbeautylounge" class="btn btn-outline" target="_blank" rel="noopener">@Debsbeautylounge on Instagram</a>
+  </div>
+
+  <section class="booking" id="book">
+    <div class="booking-card">
+      <h2>Book your session</h2>
+      <p>Fill this in and it lands straight in Debs' inbox.</p>
+
+      <!-- Replace YOUR_FORM_ID below with your real Formspree form ID -->
+      <form id="booking-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" name="First name" required>
+          </div>
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" name="Last name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="Phone">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" name="Preferred date" required>
+          </div>
+          <div class="field">
+            <label for="service">Service</label>
+            <select id="service" name="Service" required>
+              <option value="">Select a service…</option>
+              <optgroup label="Bridal Glam">
+                <option>The Classic Bride</option>
+                <option>The Signature Bride</option>
+                <option>The Luxe Bride</option>
+                <option>Bridal Party</option>
+                <option>Bridal Trial</option>
+              </optgroup>
+              <optgroup label="Events Makeup">
+                <option>Birthday Glam</option>
+                <option>Photoshoot Makeup</option>
+                <option>Dinner &amp; Special Occasion</option>
+              </optgroup>
+              <optgroup label="Makeup Classes">
+                <option>1-on-1 Class</option>
+                <option>Upgrade Class</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" name="Notes" rows="3" placeholder="Venue, inspiration photos, anything Debs should know"></textarea>
+        </div>
+        <button type="submit" class="btn btn-wide">Request booking</button>
+        <p id="form-status" class="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-wrap">
+    <div>
+      <h4>Debs Beauty Lounge</h4>
+      <p>[Studio address or "mobile — I travel to you"]</p>
+      <p>[Areas served]</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>hello@debsbeautylounge.com</p>
+      <p>[Phone number]</p>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <p><a href="https://instagram.com/Debsbeautylounge" target="_blank" rel="noopener">Instagram @Debsbeautylounge</a></p>
+    </div>
+  </div>
+  <p class="footer-bottom">© <span id="year"></span> Debs Beauty Lounge</p>
+</footer>
+
+<script>
+  // Brush intro: plays once per visit, skips on tap, respects reduced-motion
+  (function(){
+    const overlay = document.getElementById('introOverlay');
+    if (!overlay) return;
+    const alreadyPlayed = sessionStorage.getItem('debsIntroPlayed');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (alreadyPlayed || reduceMotion){
+      overlay.remove();
+      return;
+    }
+    sessionStorage.setItem('debsIntroPlayed', '1');
+    document.body.style.overflow = 'hidden';
+    function finishIntro(){
+      overlay.classList.add('intro-hide');
+      document.body.style.overflow = '';
+      setTimeout(() => overlay.remove(), 700);
+    }
+    overlay.addEventListener('click', finishIntro);
+    setTimeout(finishIntro, 3000);
+  })();
+
+  const navToggle = document.getElementById('navToggle');
+  const siteNav = document.getElementById('siteNav');
+  navToggle.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  siteNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    siteNav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  function chooseService(value){
+    const mainSelect = document.getElementById('service');
+    mainSelect.value = value;
+    document.getElementById('book').scrollIntoView({behavior:'smooth', block:'start'});
+    mainSelect.classList.add('flash');
+    setTimeout(() => mainSelect.classList.remove('flash'), 900);
+  }
+
+  document.getElementById('date').min = new Date().toISOString().split('T')[0];
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('booking-form');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    status.textContent = 'Sending…';
+    status.className = 'form-status';
+    try{
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok){
+        status.textContent = "Thank you! Your booking request has been sent — Debs will confirm shortly.";
+        status.className = 'form-status success';
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong sending that. Please try again or message Debs directly.";
+        status.className = 'form-status error';
+      }
+    } catch (err){
+      status.textContent = "Network error — please try again.";
+      status.className = 'form-status error';
+    }
+  });
+</script>
+
+<!-- Powers the automatic gallery: pulls in whatever Debs has uploaded via admin.html -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const GALLERY_SUPABASE_URL = 'https://yzugrjqmpnfplyumtder.supabase.co';
+  const GALLERY_SUPABASE_KEY = 'sb_publishable_yjr5mZAjQH-_WhH3IRAghg_e0AZaF7Z';
+  const galleryClient = window.supabase.createClient(GALLERY_SUPABASE_URL, GALLERY_SUPABASE_KEY);
+
+  async function loadGallery(){
+    const { data, error } = await galleryClient
+      .storage.from('gallery')
+      .list('', { sortBy: { column: 'created_at', order: 'desc' } });
+
+    if (error || !data || data.length === 0) return; // keep the placeholder cards
+
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = '';
+    data.forEach((file) => {
+      const { data: pub } = galleryClient.storage.from('gallery').getPublicUrl(file.name);
+      const fig = document.createElement('figure');
+      fig.className = 'shade-card photo-card';
+      const img = document.createElement('img');
+      img.src = pub.publicUrl;
+      img.alt = 'Makeup look by Debs Beauty Lounge';
+      img.loading = 'lazy';
+      fig.appendChild(img);
+      grid.appendChild(fig);
+    });
+  }
+  loadGallery();
+</script>
+</body>
+</html>
